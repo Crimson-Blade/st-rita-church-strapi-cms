@@ -1,0 +1,84 @@
+{
+  "kind": "singleType",
+  "collectionName": "parish_infos",
+  "info": {
+    "singularName": "parish-info",
+    "pluralName": "parish-infos",
+    "displayName": "Parish Info"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parishName": {
+      "type": "string",
+      "default": "St. Rita's Church",
+      "maxLength": 100,
+      "required": true
+    },
+    "parishSubtitle": {
+      "type": "string",
+      "default": "Catholic Church",
+      "maxLength": 50
+    },
+    "officePhone": {
+      "type": "string",
+      "required": true,
+      "regex": "^[+]?[0-9\\s\\-\\(\\)]+$"
+    },
+    "parishPriestPhone": {
+      "type": "string",
+      "regex": "^[+]?[0-9\\s\\-\\(\\)]+$"
+    },
+    "officeEmail": {
+      "type": "email",
+      "required": true
+    },
+    "parishPriestEmail": {
+      "type": "email"
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 200,
+      "required": true
+    },
+    "officeWeekdayHours": {
+      "type": "string",
+      "default": "9:00 AM - 5:00 PM",
+      "maxLength": 50
+    },
+    "officeSaturdayHours": {
+      "type": "string",
+      "default": "9:00 AM - 1:00 PM",
+      "maxLength": 50
+    },
+    "officeSundayHours": {
+      "type": "string",
+      "default": "Closed",
+      "maxLength": 50
+    },
+    "sundayMass": {
+      "type": "string",
+      "default": "8:00 AM, 10:30 AM, 6:00 PM",
+      "maxLength": 100,
+      "required": true
+    },
+    "weekdayMass": {
+      "type": "string",
+      "default": "7:00 AM, 12:10 PM",
+      "maxLength": 100,
+      "required": true
+    },
+    "saturdayMass": {
+      "type": "string",
+      "default": "8:00 AM, 5:30 PM",
+      "maxLength": 100,
+      "required": true
+    },
+    "confessionTimings": {
+      "type": "string",
+      "default": "NA"
+    }
+  }
+}
