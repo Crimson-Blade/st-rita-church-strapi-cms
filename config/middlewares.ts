@@ -5,7 +5,6 @@ export default [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
       origin: ['https://saintritamaina.org'], // replace with your actual frontend URLs
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: '*',
