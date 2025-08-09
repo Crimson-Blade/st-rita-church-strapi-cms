@@ -6,7 +6,7 @@ export default [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://strita.netlify.app'], // replace with your actual frontend URLs
+      origin: ['https://saintritamaina.org'], // replace with your actual frontend URLs
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: '*',
       exposeHeaders: ['Content-Disposition', 'Content-Type'],
@@ -21,3 +21,5 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
+
+// scp -r ./uploads/ azureuser@20.244.24.17:/home/azureuser/rita-strapi-cms/public/

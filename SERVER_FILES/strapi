@@ -1,0 +1,48 @@
+# THIS FILE IS A CONFIG FILE FOR NGINX, It is to be named "strapi"
+
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    server_name api.saintritamaina.org;
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS server block
+server {
+    listen 443 ssl;
+    server_name api.saintritamaina.org;
+
+    # SSL certificate from Let's Encrypt (Install using certbot)
+    # Make sure to replace the paths with your actual certificate paths
+    # You can obtain a certificate using certbot with the command:
+    # sudo apt install certbot python3-certbot-nginx
+    # sudo certbot --nginx -d api.saintritamaina.org
+    ssl_certificate /etc/letsencrypt/live/api.saintritamaina.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.saintritamaina.org/privkey.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    location / {
+        proxy_pass http://localhost:1337;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /uploads/ {
+        proxy_pass http://localhost:1337/uploads/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header 'Access-Control-Allow-Origin' 'https://saintritamaina.org' always; # Update to match your frontend
+        add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS' always;
+        add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization' always;
+        add_header 'Access-Control-Expose-Headers' 'Content-Disposition, Content-Type' always;
+    }
+}
