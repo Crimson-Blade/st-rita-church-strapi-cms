@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: strapi-cms
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "1337:1337"
+    volumes:
+      # Persist uploads and SQLite DB
+      - ./public/uploads:/opt/app/public/uploads
+      - ./.tmp:/opt/app/.tmp
+    environment:
+      # Optionally override or add env values here
+      HOST: 0.0.0.0
+      PORT: 1337
+    # Uncomment if you want logs persisted
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "10m"
+    #     max-file: "3"
+# docker compose commands:
+# docker compose build       # Build the image
+# docker compose up -d     # Start in detached mode
+# docker compose stop        # Stop
+# docker compose start       # Start
+# docker compose down        # Stop and remove container
